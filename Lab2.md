@@ -46,7 +46,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
 # Initialize the model
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 def chat_with_gemini():
     print("Gemini CLI Assistant (type 'quit' to exit)")
