@@ -1,4 +1,4 @@
-# **Labs 2.7 to 2.10: Building Apps with Gemini API**
+# **Labs 2.7: Building Apps with Gemini API**
 
 *Check Available Model in Gemini*
 https://github.com/trumanng10/Gemini_Labs/blob/main/list_model.py
