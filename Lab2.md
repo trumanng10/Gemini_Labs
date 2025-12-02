@@ -1,5 +1,8 @@
 # **Labs 2.7 to 2.10: Building Apps with Gemini API**
 
+*Check Available Model in Gemini*
+https://github.com/trumanng10/Gemini_Labs/blob/main/list_model.py
+
 ## **Lab 2.7: Making Your First API Call**
 **Learning Objectives:**
 - Understand the difference between Google AI Studio (UI) and Gemini API (programmatic)
