@@ -572,7 +572,10 @@ def display_chat_interface():
     # Image preview for multimodal
     if st.session_state.uploaded_image:
         st.info(f"📎 Image ready for analysis with {st.session_state.selected_model}")
-    
+    # Use st.chat_input instead of text_area for better chat experience
+    if prompt := st.chat_input("Type your message here..."):
+        process_user_input(prompt)
+
     # Input area
     col1, col2 = st.columns([6, 1])
     with col1:
@@ -591,6 +594,10 @@ def display_chat_interface():
 
 def process_user_input(user_input: str):
     """Process user input and generate response"""
+    # Don't modify widget state, just process the input
+    if not user_input.strip():
+        return  # Don't process empty input
+    
     # Add user message to history
     user_message = {
         "role": "user",
@@ -639,8 +646,7 @@ def process_user_input(user_input: str):
             
             st.session_state.messages.append(assistant_message)
             
-            # Clear input and rerun
-            st.session_state.user_input = ""
+            # Instead of modifying widget state, use rerun to refresh
             st.rerun()
         else:
             st.error(f"Error: {result['error']}")
