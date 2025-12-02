@@ -48,7 +48,7 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # 4. Install required packages
-# requirement.txt:
+# 4.1 Create 'requirements.txt':
 streamlit>=1.28.0
 google-generativeai>=0.3.0
 pillow>=10.0.0
