@@ -48,7 +48,16 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # 4. Install required packages
-pip install streamlit google-generativeai pillow pandas plotly
+# requirement.txt:
+streamlit>=1.28.0
+google-generativeai>=0.3.0
+pillow>=10.0.0
+pandas>=2.0.0
+plotly>=5.17.0
+python-dotenv>=1.0.0
+
+# 4.1 install the required Libraries
+pip install -r requirements.txt
 
 # 5. Create requirements.txt for documentation
 pip freeze > requirements.txt
@@ -65,20 +74,16 @@ touch app.py utils.py config.py
 **File: `config.py`**
 ```python
 """
-Configuration settings for Gemini Chat Application
+Simplified Configuration without dotenv
 """
 
 import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 class Config:
     """Application configuration"""
     
-    # API Configuration
-    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+    # API Configuration - Hardcode your API key here temporarily
+    GEMINI_API_KEY = "YOUR_API_KEY_HERE"  # Replace with your actual key
     
     # Model configurations
     TEXT_MODELS = {
@@ -111,8 +116,8 @@ class Config:
     @classmethod
     def validate_config(cls):
         """Validate configuration on startup"""
-        if not cls.GEMINI_API_KEY:
-            raise ValueError("GEMINI_API_KEY not found in environment variables")
+        if not cls.GEMINI_API_KEY or cls.GEMINI_API_KEY == "YOUR_API_KEY_HERE":
+            return False  # Indicate API key needs to be set
         return True
 ```
 
@@ -280,6 +285,16 @@ import json
 import pandas as pd
 from datetime import datetime
 from typing import Optional
+# Replace this import:
+# from dotenv import load_dotenv
+
+# With this try-except block:
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    print("Note: python-dotenv not installed. Using hardcoded API key from config.py.")
+
 
 # Import local modules
 from config import Config
